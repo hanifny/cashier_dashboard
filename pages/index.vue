@@ -5,21 +5,9 @@
       <div class="content-header row">
       </div>
       <div class="content-body">
-        <b-card title="Card Title" img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article" style="max-width: 20rem;" class="mb-2">
-          <b-card-text>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </b-card-text>
-
-          <b-button href="#" variant="primary">Go somewhere</b-button>
+        <b-card class="bg-black">
+          <div ref="tableau"></div>
         </b-card>
-        <div class="text-center mb-3 d-flex justify-content-between">
-          <b-spinner v-for="variant in variants" :variant="variant" :key="variant"></b-spinner>
-        </div>
-
-        <div class="text-center d-flex justify-content-between">
-          <b-spinner v-for="variant in variants" :variant="variant" :key="variant" type="grow"></b-spinner>
-        </div>
-        
       </div>
     </div>
   </div>
@@ -27,15 +15,40 @@
 
 <script>
   export default {
+    head() {
+      return {
+        script: [{
+            src: 'https://online.tableau.com/javascripts/api/tableau-2.7.0.min.js',
+            defer: true
+          },
+          {
+            src: 'https://public.tableau.com/javascripts/api/tableau-2.7.0.min.js',
+            defer: true
+          }
+        ]
+      }
+    },
     data() {
       return {
-        variants: ['primary', 'secondary', 'danger', 'warning', 'success', 'info', 'light', 'dark']
+        url: "https://public.tableau.com/views/RealData-Maps/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link",
+        options: {
+          hideTabs: true,
+          width: '100%',
+          height: "700px",
+        }
       }
+    },
+    methods: {
+      initViz: function () {
+        let viz = new tableau.Viz(this.$refs.tableau, this.url, this.options);
+      }
+    },
+    mounted: function () {
+      this.initViz()
     }
   }
 
 </script>
-
 <style>
 
 </style>

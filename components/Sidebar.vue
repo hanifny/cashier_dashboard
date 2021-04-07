@@ -11,7 +11,7 @@
     <div class="navigation-background"></div>
     <div class="main-menu-content">
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-        <li :class="{'hover': path == 'index'}" class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
+        <li :class="{'hover': path == 'index'}" class="nav-item"><b-link href="/"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></b-link></li>
       </ul>
     </div>
   </div>
